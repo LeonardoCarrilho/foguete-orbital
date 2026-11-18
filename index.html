@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foguete Orbital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="jogo" aria-label="Área do jogo">
+    <div id="estrelas"></div>
+    <div id="foguete" aria-hidden="true">🚀</div>
+    <div id="hud"><span>Pontos: <b id="pontos">0</b></span><span>Recorde: <b id="recorde">0</b></span></div>
+    <div id="tela" class="visivel">
+      <h1>Foguete Orbital</h1>
+      <p>Passe pelas aberturas entre os campos de asteroides.</p>
+      <p><kbd>Espaço</kbd>, clique ou toque para acelerar.</p>
+      <button id="iniciar">Decolar</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
