@@ -2,6 +2,8 @@
 
 Jogo de reflexo em **JavaScript puro**: o foguete cai pela gravidade e você acelera para passar entre os campos de asteroides.
 
+🔗 **Ao vivo:** https://leonardocarrilho.github.io/foguete-orbital/
+
 ## Destaques técnicos
 - Obstáculos criados e removidos dinamicamente como `div`s no DOM
 - Física simples (gravidade e impulso) com `requestAnimationFrame`, independente da taxa de quadros
