@@ -11,6 +11,15 @@ let recorde = 0;
 try { recorde = Number(localStorage.getItem("recorde-foguete")) || 0; } catch {}
 elRecorde.textContent = recorde;
 
+// Placar com pilotos fictícios; o recorde de quem joga entra na disputa.
+const PILOTOS = [["ANA", 41], ["RAFA", 33], ["BIA", 27], ["THEO", 19], ["LIA", 12]];
+function mostrarPlacar(el) {
+  if (!el) return;
+  const lista = [...PILOTOS, ["VOCÊ", recorde]].sort((a, b) => b[1] - a[1]).slice(0, 6);
+  el.innerHTML = lista.map(([nome, p]) => `<li class="${nome === "VOCÊ" ? "voce" : ""}"><span>${nome}</span><span>${p}</span></li>`).join("");
+}
+mostrarPlacar(document.querySelector("#placar"));
+
 const tamanho = () => jogo.getBoundingClientRect();
 
 function criarCampo() {
@@ -42,8 +51,18 @@ function fim() {
     recorde = pontos;
     try { localStorage.setItem("recorde-foguete", recorde); } catch {}
     elRecorde.textContent = recorde;
+
+// Placar com pilotos fictícios; o recorde de quem joga entra na disputa.
+const PILOTOS = [["ANA", 41], ["RAFA", 33], ["BIA", 27], ["THEO", 19], ["LIA", 12]];
+function mostrarPlacar(el) {
+  if (!el) return;
+  const lista = [...PILOTOS, ["VOCÊ", recorde]].sort((a, b) => b[1] - a[1]).slice(0, 6);
+  el.innerHTML = lista.map(([nome, p]) => `<li class="${nome === "VOCÊ" ? "voce" : ""}"><span>${nome}</span><span>${p}</span></li>`).join("");
+}
+mostrarPlacar(document.querySelector("#placar"));
   }
-  tela.innerHTML = `<h1>Fim de jogo</h1><p>Você fez <b>${pontos}</b> pontos.</p><button id="iniciar">Jogar de novo</button>`;
+  tela.innerHTML = `<h1>Fim de jogo</h1><p>Você fez <b>${pontos}</b> pontos.</p><button id="iniciar">Jogar de novo</button><p class="placar-titulo">Melhores voos</p><ol class="placar" id="placar"></ol>`;
+  mostrarPlacar(tela.querySelector("#placar"));
   tela.classList.add("visivel");
   tela.querySelector("#iniciar").addEventListener("click", iniciar);
 }

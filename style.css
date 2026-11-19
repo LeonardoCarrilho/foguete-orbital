@@ -1,15 +1,49 @@
+/* Identidade "arcade espacial suave": céu azul-noite, estrelas em pastel e placar em fonte de pixel. */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;600&display=swap");
+
+:root {
+  --ceu: #1c2340;
+  --ceu-claro: #2c3560;
+  --estrela: #f3e9c6;
+  --rocha: #8b7f9e;
+  --rocha-clara: #a99fbb;
+  --amarelo: #f2d58a;
+  --texto: #eef0f8;
+  --suave: #aab2d1;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { min-height: 100vh; display: grid; place-items: center; background: #0b0f1e; font-family: system-ui, sans-serif; color: #fff; padding: 16px; }
-#jogo { position: relative; width: min(100%, 480px); aspect-ratio: 3 / 4; overflow: hidden; border-radius: 16px;
-  background: radial-gradient(circle at 70% 20%, #2b2f6b, #0b0f1e 70%); box-shadow: 0 0 40px #4b54ff44; touch-action: manipulation; user-select: none; }
-#estrelas { position: absolute; inset: 0; background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px; opacity: .25; animation: rolar 6s linear infinite; }
-@keyframes rolar { to { background-position: -40px 0; } }
-#foguete { position: absolute; left: 20%; font-size: 34px; line-height: 1; transform-origin: center; z-index: 2; }
-.campo { position: absolute; width: 64px; background: repeating-linear-gradient(45deg, #6b5b4e, #6b5b4e 10px, #85715f 10px, #85715f 20px);
-  border: 3px solid #a08a74; border-radius: 12px; }
-#hud { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; font-weight: 700; z-index: 3; text-shadow: 0 2px 4px #000; }
-#tela { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 24px; background: #0b0f1ecc; z-index: 4; }
+body { min-height: 100vh; display: grid; place-items: center; background: #141a30; font-family: "Rubik", system-ui, sans-serif; color: var(--texto); padding: 16px; }
+#jogo {
+  position: relative; width: min(100%, 480px); aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px;
+  background: radial-gradient(circle at 78% 18%, #4a4f86 0 26px, transparent 27px), radial-gradient(circle at 70% 25%, var(--ceu-claro), var(--ceu) 70%);
+  border: 4px solid #2f3866; touch-action: manipulation; user-select: none;
+}
+#estrelas {
+  position: absolute; inset: 0; opacity: .55; animation: rolar 9s linear infinite;
+  background-image: radial-gradient(var(--estrela) 1px, transparent 1.5px), radial-gradient(#c9d4ff 1px, transparent 1.5px);
+  background-size: 60px 60px, 37px 37px; background-position: 0 0, 19px 23px;
+}
+@keyframes rolar { to { background-position: -60px 0, -18px 23px; } }
+#foguete { position: absolute; left: 20%; top: 50%; width: 40px; height: 40px; transform-origin: center; z-index: 2; }
+#foguete svg { width: 100%; height: 100%; display: block; }
+.campo {
+  position: absolute; width: 64px; border-radius: 14px;
+  background: radial-gradient(circle at 30% 20%, var(--rocha-clara) 0 6px, transparent 7px) 0 0 / 32px 40px, radial-gradient(circle at 70% 70%, #7a6f8e 0 5px, transparent 6px) 0 0 / 28px 34px, var(--rocha);
+  box-shadow: inset -6px 0 0 #6f6582, inset 4px 0 0 var(--rocha-clara);
+}
+#hud { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between; z-index: 3; font-family: "Press Start 2P", monospace; font-size: .62rem; color: var(--amarelo); line-height: 1.6; }
+#hud b { color: var(--texto); font-weight: 400; }
+#tela { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px; background: #1c2340e6; z-index: 4; }
 #tela.visivel { display: flex; }
-#tela h1 { font-size: 2.2rem; color: #ffd166; }
-kbd { background: #333; padding: 2px 6px; border-radius: 4px; }
-button { margin-top: 8px; padding: 12px 28px; font-size: 1.2rem; font-weight: 700; border: 0; border-radius: 10px; background: #ffd166; color: #0b0f1e; cursor: pointer; }
+#tela h1 { font-family: "Press Start 2P", monospace; font-weight: 400; font-size: 1.35rem; line-height: 1.5; color: var(--amarelo); }
+#tela p { color: var(--suave); max-width: 30ch; }
+kbd { background: var(--ceu-claro); border: 1px solid #47518a; padding: 2px 8px; border-radius: 4px; color: var(--texto); font-family: inherit; }
+button { font-family: "Press Start 2P", monospace; margin-top: 4px; padding: 14px 22px; font-size: .8rem; border: 0; border-radius: 8px; background: var(--amarelo); color: var(--ceu); cursor: pointer; box-shadow: 0 4px 0 #c8ab5f; }
+button:active { transform: translateY(3px); box-shadow: 0 1px 0 #c8ab5f; }
+button:focus-visible { outline: 3px solid var(--texto); outline-offset: 3px; }
+
+.placar { width: min(100%, 260px); margin-top: 6px; list-style: none; font-family: "Press Start 2P", monospace; font-size: .6rem; line-height: 2.1; color: var(--suave); }
+.placar li { display: flex; justify-content: space-between; border-bottom: 1px dashed #3d4677; }
+.placar li.voce { color: var(--amarelo); }
+.placar-titulo { font-family: "Press Start 2P", monospace; font-size: .62rem; color: var(--texto); margin-top: 6px; }
+@media (prefers-reduced-motion: reduce) { #estrelas { animation: none; } }

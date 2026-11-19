@@ -9,13 +9,15 @@
 <body>
   <div id="jogo" aria-label="Área do jogo">
     <div id="estrelas"></div>
-    <div id="foguete" aria-hidden="true">🚀</div>
+    <div id="foguete" aria-hidden="true"><svg viewBox="0 0 40 40"><g transform="rotate(45 20 20)"><path d="M20 3c6 5 8 12 7 20H13c-1-8 1-15 7-20z" fill="#eef0f8"/><circle cx="20" cy="14" r="3.4" fill="#7fa6d9" stroke="#2c3560" stroke-width="1.4"/><path d="M13 19l-5 7 6-1zM27 19l5 7-6-1z" fill="#e79a8f"/><path d="M16 23h8l-1.5 5h-5z" fill="#f2d58a"/><path d="M17.5 28h5l-2.5 7z" fill="#f0b46b"/></g></svg></div>
     <div id="hud"><span>Pontos: <b id="pontos">0</b></span><span>Recorde: <b id="recorde">0</b></span></div>
     <div id="tela" class="visivel">
       <h1>Foguete Orbital</h1>
       <p>Passe pelas aberturas entre os campos de asteroides.</p>
       <p><kbd>Espaço</kbd>, clique ou toque para acelerar.</p>
       <button id="iniciar">Decolar</button>
+      <p class="placar-titulo">Melhores voos</p>
+      <ol class="placar" id="placar"></ol>
     </div>
   </div>
   <script src="app.js"></script>
